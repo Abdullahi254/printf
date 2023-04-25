@@ -3,15 +3,15 @@
 
 /**
  * struct format - match the conversion specifiers for printf
- * @id: char pointer of the specifier
- * @f: pointer to function for the conversion specifier
+ * @identifier: char pointer of the specifier
+ * @printer: pointer to function for the conversion specifier
  *
  */
 
 typedef struct format
 {
-	char *id;
-	int (*f)();
+	char *identifier;
+	int (*printer)(va_list);
 } convert_match;
 
 int _putchar(char c);
