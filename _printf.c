@@ -1,20 +1,20 @@
-#include "holberton.h"
+#include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
 
 /**
- * printId - prints special characters
+ * printIdentifiers - prints special characters
  * @next: character after the %
  * @arg: argument for the indentifier
  * Return: the number of characters printed
  * (excluding the null byte used to end output to strings)
  */
 
-int printId(char next, va_list arg)
+int printIdentifiers(char next, va_list arg)
 {
-	int i;
+	int functsIndex;
 
-	convert_match functs[] = {
+	identifierStruct functs[] = {
 		{"c", print_char},
 		{"s", print_str},
 		{"d", print_int},
@@ -28,10 +28,10 @@ int printId(char next, va_list arg)
 		{NULL, NULL}
 	};
 
-	for (i = 0; functs[i].indentifier != NULL; i++)
+	for (functsIndex = 0; functs[functsIndex].indentifier != NULL; functsIndex++)
 	{
-		if (functs[i].indentifier[0] == next)
-			return (functs[i].printer(arg));
+		if (functs[functsIndex].indentifier[0] == next)
+			return (functs[functsIndex].printer(arg));
 	}
 	return (0);
 }
@@ -75,7 +75,7 @@ int _printf(const char *format, ...)
 		if (format[i + 1] == '\0')
 			return (-1);
 
-		identifierPrinted = printId(format[i + 1], arg);
+		identifierPrinted = printIdentifiers(format[i + 1], arg);
 		if (identifierPrinted == -1 || identifierPrinted != 0)
 			i++;
 		if (identifierPrinted > 0)
